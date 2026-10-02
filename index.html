@@ -1689,6 +1689,16 @@ renderHome();
 renderLib();
 renderSourceChip();
 detectSources();
+document.addEventListener('pointerdown', async () => {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    const tempCtx = new AudioContextClass();
+    await tempCtx.resume();
+  } catch (e) {
+    console.log('音频唤醒失败', e);
+  }
+}, { once: true })
+
 </script>
 
 <!-- github pages deploy -->  
